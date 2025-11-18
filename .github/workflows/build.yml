@@ -24,7 +24,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          fetch-tags: true
 
       - name: Compute next version
         id: setver
@@ -57,11 +56,17 @@ jobs:
           name: mavizcare-jar
           path: build/libs/*.jar
 
-      - name: Create Git tag
+      - name: Fetch tags
+        run: git fetch --tags --force
+
+      - name: Determine version
+        id: version
+        run: ./scripts/nextversion.sh
+
+      - name: Create tag if not exists
         run: |
-          VERSION=${{ steps.setver.outputs.version }}
-          git tag v$VERSION
-          git push origin v$VERSION
+          git tag -f "v${{ steps.version.outputs.next }}"
+          git push --force origin "v${{ steps.version.outputs.next }}"
 
   docker:
     name: Build & Push Docker Image
