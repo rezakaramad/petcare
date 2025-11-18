@@ -32,6 +32,12 @@ jobs:
           git tag -f "v$VERSION"
           git push --force origin "v$VERSION"
 
+      - name: Create tag
+        run: |
+          VERSION=${{ steps.setver.outputs.version }}
+          git tag -f "v$VERSION"
+          git push --force origin "v$VERSION"
+
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
