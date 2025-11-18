@@ -40,6 +40,6 @@ spring:
       on-profile: k8s
   datasource:
     url: jdbc:mariadb://database:3306/mavizcare
-    username: level1
-    password: level1
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.mariadb.jdbc.Driver
