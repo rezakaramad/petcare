@@ -98,6 +98,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Resolve JAR file
+        run: echo "JAR_FILE=$(ls jar/*.jar)" >> $GITHUB_ENV
+
       - name: Build & push Docker image
         uses: docker/build-push-action@v6
         with:
@@ -107,6 +110,6 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/mavizcare:latest
             ghcr.io/${{ github.repository_owner }}/mavizcare:${{ needs.gradle.outputs.version }}
           build-args: |
-            JAR_FILE=$(ls jar/*.jar)
+            JAR_FILE=${{ env.JAR_FILE }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
