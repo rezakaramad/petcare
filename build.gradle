@@ -7,12 +7,17 @@ plugins {
 }
 
 group = "com.github.rezakaramad"
-version = System.getenv("ARTIFACT_VERSION") ?: new Random().nextInt(999999).toString().padLeft(5, '0')
+version = project.findProperty("version") ?: "0.0.0-local"
 
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
 	}
+}
+
+bootJar {
+    archiveBaseName = "mavizcare"
+    archiveVersion  = project.version
 }
 
 repositories {
@@ -36,11 +41,11 @@ tasks.named('test') {
 }
 
 checkstyle {
-    toolVersion = '10.12.4'
+	toolVersion = '10.12.4'
 	configFile = rootProject.file("config/checkstyle/checkstyle.xml")
-    reportsDir = file("$project.buildDir/reports/checkstyle")
+	reportsDir = file("$project.buildDir/reports/checkstyle")
 	ignoreFailures = false
-    checkstyleTest.enabled = false
+	checkstyleTest.enabled = false
 }
 
 tasks.withType(Checkstyle) {
