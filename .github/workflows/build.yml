@@ -25,11 +25,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Fetch tags
+        run: git fetch --tags --force
+
       - name: Compute next version
         id: setver
         run: |
           VERSION=$(scripts/nextversion.sh)
+          echo "Computed VERSION=$VERSION"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create tag
+        run: |
+          VERSION=${{ steps.setver.outputs.version }}
+          git tag -f "v$VERSION"
+          git push --force origin "v$VERSION"
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -55,18 +65,6 @@ jobs:
         with:
           name: mavizcare-jar
           path: build/libs/*.jar
-
-      - name: Fetch tags
-        run: git fetch --tags --force
-
-      - name: Determine version
-        id: version
-        run: ./scripts/nextversion.sh
-
-      - name: Create tag if not exists
-        run: |
-          git tag -f "v${{ steps.version.outputs.next }}"
-          git push --force origin "v${{ steps.version.outputs.next }}"
 
   docker:
     name: Build & Push Docker Image
