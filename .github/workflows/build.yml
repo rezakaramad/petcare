@@ -64,7 +64,7 @@ jobs:
 
   docker:
     name: Build & Push Docker Image
-    needs: build
+    needs: gradle
     runs-on: ubuntu-latest
     permissions:
       contents: read
