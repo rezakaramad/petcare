@@ -16,6 +16,7 @@ RUN ./gradlew clean bootJar --no-daemon
 # -------------------------------------------------
 FROM gcr.io/distroless/java21
 WORKDIR /app
-COPY --from=builder /app/build/libs/*.jar app.jar
+ARG JAR_FILE=app.jar
+COPY ${JAR_FILE} app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
