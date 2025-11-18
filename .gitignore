@@ -4,7 +4,6 @@ build/
 .gradle
 .gradletasknamecache
 gradle-app.setting
-!gradle/wrapper/gradle-wrapper.jar
 
 # Compiled class file
 *.class
@@ -34,3 +33,6 @@ replay_pid*
 # Visual Studio Code
 .vscode/
 .code-workspace
+
+# Allow the Gradle Wrapper
+!gradle/wrapper/gradle-wrapper.jar
