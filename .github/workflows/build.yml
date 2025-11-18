@@ -14,7 +14,7 @@ jobs:
     name: Build Spring Boot JAR
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     outputs:
       sha: ${{ steps.sha.outputs.sha }}
 
@@ -22,21 +22,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-<<<<<<< HEAD
       - name: Expose commit SHA
         id: sha
         run: echo "sha=${GITHUB_SHA}" >> $GITHUB_OUTPUT
-=======
-      - name: Fetch tags
-        run: git fetch --tags --force
-
-      - name: Compute next version
-        id: setver
-        run: |
-          VERSION=$(scripts/nextversion.sh)
-          echo "Computed VERSION=$VERSION"
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
->>>>>>> 4f3e2c5 (Fix tagging in the pipeline)
 
       - name: Create tag
         run: |
@@ -67,10 +55,6 @@ jobs:
           name: mavizcare-jar
           path: build/libs/mavizcare-${GITHUB_SHA}.jar
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4f3e2c5 (Fix tagging in the pipeline)
   docker:
     name: Build & Push Docker Image
     needs: gradle
