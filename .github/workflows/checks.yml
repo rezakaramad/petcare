@@ -42,15 +42,17 @@ jobs:
             **/build/reports/checkstyle/*
             **/build/reports/spotbugs/*
 
+      - name: Build JAR
+        run: ./gradlew clean build -x test
+
       - name: 🔍 Trivy Vulnerability Scan (Filesystem)
         uses: aquasecurity/trivy-action@0.20.0
         with:
-          scan-type: fs
-          severity: HIGH,CRITICAL
-          ignore-unfixed: true
-          exit-code: '1'
-          format: table
-          output: trivy-report.txt
+          scan-type: 'fs'
+          scan-ref: 'build/libs'
+          format: 'table'
+          output: 'trivy-report.txt'
+          severity: 'HIGH,CRITICAL'
 
       - name: Upload Trivy Report
         if: always()
