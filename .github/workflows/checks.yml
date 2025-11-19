@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   quality:
-    name: ✨ Static Analysis
+    name: ✨ Quality check
     runs-on: ubuntu-latest
 
     steps:
@@ -59,7 +59,7 @@ jobs:
           path: trivy-report.txt
 
   tests:
-    name: 🧪 Tests (Unit + Controller)
+    name: 🧪 Unit tests
     runs-on: ubuntu-latest
 
     steps:
