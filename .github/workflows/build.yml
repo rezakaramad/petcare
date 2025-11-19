@@ -9,34 +9,20 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository_owner }}/mavizcare
 
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   gradle:
     name: Build Spring Boot JAR
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    outputs:
-      sha: ${{ steps.sha.outputs.sha }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Expose commit SHA
-        id: sha
-        run: echo "sha=${GITHUB_SHA}" >> $GITHUB_OUTPUT
-
-      - name: Create tag
-        run: |
-          VERSION=${{ steps.setver.outputs.version }}
-          git tag -f "v$VERSION"
-          git push --force origin "v$VERSION"
-
-      - name: Create tag
-        run: |
-          VERSION=${{ steps.setver.outputs.version }}
-          git tag -f "v$VERSION"
-          git push --force origin "v$VERSION"
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -77,17 +63,11 @@ jobs:
         with:
           driver: docker-container
 
-      - name: Expose SHA
-        run: echo "SHA=${{ needs.gradle.outputs.sha }}" >> $GITHUB_ENV
-
       - name: Download JAR artifact
         uses: actions/download-artifact@v4
         with:
           name: mavizcare-jar
           path: jar
-
-      - name: Resolve JAR file
-        run: echo "JAR_FILE=$(ls jar/*.jar)" >> $GITHUB_ENV
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -102,9 +82,9 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/mavizcare:${{ env.SHA }}
+            ghcr.io/${{ github.repository_owner }}/mavizcare:${{ github.sha }}
             ghcr.io/${{ github.repository_owner }}/mavizcare:latest
           build-args: |
-            JAR_FILE=${{ env.JAR_FILE }}
+            JAR_FILE=jar/mavizcare-${{ github.sha }}.jar
           cache-from: type=gha
           cache-to: type=gha,mode=max

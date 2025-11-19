@@ -8,7 +8,9 @@ plugins {
 }
 
 group = "com.github.rezakaramad"
-version = project.findProperty("version") ?: "0.0.0-local"
+version = (project.findProperty("version")
+        ?: System.getenv("VERSION")
+        ?: "0.1.0-SNAPSHOT")
 
 java {
 	toolchain {
@@ -16,7 +18,12 @@ java {
 	}
 }
 
+tasks.named("jar") {
+    enabled = false
+}
+
 bootJar {
+    enabled = true
     archiveBaseName = "mavizcare"
     archiveVersion  = project.version
 }
