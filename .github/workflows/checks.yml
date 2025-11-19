@@ -43,12 +43,12 @@ jobs:
             **/build/reports/spotbugs/*
 
       - name: Build JAR
-        run: ./gradlew clean build -x test
+        run: ./gradlew -Pversion=${GITHUB_SHA} bootJar --no-daemon
 
       - name: 🔍 Trivy Vulnerability Scan (Filesystem)
         uses: aquasecurity/trivy-action@0.20.0
         with:
-          scan-type: 'fs'
+          scan-type: 'rootfs'
           scan-ref: 'build/libs'
           format: 'table'
           output: 'trivy-report.txt'
