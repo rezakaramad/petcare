@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 /**
- * Main application class for the Maviz Care project.
- * This class bootstraps the Spring Boot application.
+ * Main application class for the Maviz Care project. This class bootstraps the Spring Boot
+ * application.
  */
 @SpringBootApplication
 @EntityScan("com.github.rezakaramad.mavizcare.entity")

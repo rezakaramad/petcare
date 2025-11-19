@@ -1,5 +1,6 @@
 package com.github.rezakaramad.mavizcare.entity;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,21 +9,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * Entity representing a book with a title and an author.
- * 
- * <p>This class is used to store and manage book details in the database. Each book
- * has a unique identifier, a title, and an author.</p>
+ * JPA entity representing a purchase item.
  */
+@SuppressFBWarnings({"EI_EXPOSE_REP", "EI_EXPOSE_REP2"})
 @Entity
 @Table(name = "purchases")
 public class Purchase {
   @Id
-  @GeneratedValue(strategy =  GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @ManyToOne
@@ -42,41 +40,75 @@ public class Purchase {
 
   public Purchase() {}
 
-  public Purchase(Profile profile, Food food, LocalDate purchaseDate,
-                  Integer quantity, BigDecimal price, String store) {
-      this.profile = profile;
-      this.food = food;
-      this.purchaseDate = purchaseDate;
-      this.quantity = quantity;
-      this.price = price;
-      this.store = store;
+  /**
+   * Purchase class.
+   */
+  public Purchase(
+      Profile profile,
+      Food food,
+      LocalDate purchaseDate,
+      Integer quantity,
+      BigDecimal price,
+      String store) {
+    this.profile = profile;
+    this.food = food;
+    this.purchaseDate = purchaseDate;
+    this.quantity = quantity;
+    this.price = price;
+    this.store = store;
   }
+
   // Getters and setters
 
-  public Long getId() { return id; }
+  public Long getId() {
+    return id;
+  }
 
-  public Profile getProfile() { return profile; }
+  public Profile getProfile() {
+    return profile;
+  }
 
-  public void setProfile(Profile profile) { this.profile = profile; }
+  public void setProfile(Profile profile) {
+    this.profile = profile;
+  }
 
-  public Food getFood() { return food; }
+  public Food getFood() {
+    return food;
+  }
 
-  public void setFood(Food food) { this.food = food; }
+  public void setFood(Food food) {
+    this.food = food;
+  }
 
-  public LocalDate getPurchaseDate() { return purchaseDate; }
+  public LocalDate getPurchaseDate() {
+    return purchaseDate;
+  }
 
-  public void setPurchaseDate(LocalDate purchaseDate) { this.purchaseDate = purchaseDate; }
+  public void setPurchaseDate(LocalDate purchaseDate) {
+    this.purchaseDate = purchaseDate;
+  }
 
-  public Integer getQuantity() { return quantity; }
+  public Integer getQuantity() {
+    return quantity;
+  }
 
-  public void setQuantity(Integer quantity) { this.quantity = quantity; }
+  public void setQuantity(Integer quantity) {
+    this.quantity = quantity;
+  }
 
-  public BigDecimal getPrice() { return price; }
+  public BigDecimal getPrice() {
+    return price;
+  }
 
-  public void setPrice(BigDecimal price) { this.price = price; }
+  public void setPrice(BigDecimal price) {
+    this.price = price;
+  }
 
-  public String getStore() { return store; }
+  public String getStore() {
+    return store;
+  }
 
-  public void setStore(String store) { this.store = store; }
-
+  public void setStore(String store) {
+    this.store = store;
+  }
 }
