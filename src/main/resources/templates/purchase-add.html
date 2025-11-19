@@ -13,7 +13,7 @@
     <div class="main-container">
         <h1>Purchase add</h1>
 
-        <form th:action="@{/purchase/add}" th:object="${purchase}" method="post" class="form-container">
+        <form th:action="@{/purchase/add}" th:object="${purchaseDTO}" method="post" class="form-container">
 
             <div class="form-group">
                 <label for="profile">Profile</label>
@@ -27,14 +27,13 @@
 
             <div class="form-group">
                 <label for="food">Food</label>
-                <select id="food" name="food.id">
+                <select id="food" name="foodId">
                     <option th:each="f : ${foods}"
                             th:value="${f.id}"
                             th:text="${f.name}">
                     </option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="purchaseDate">Purchase Date</label>
                 <input type="date" id="purchaseDate" name="purchaseDate" required>
