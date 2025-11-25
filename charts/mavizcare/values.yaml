@@ -12,7 +12,7 @@ fullnameOverride: ""
 replicas: 1
 
 image:
-  repository: "your-docker-registry/mavizcare"
+  repository: "your-docker-registry/petcare"
   tag: ""
   pullPolicy: IfNotPresent
 
@@ -54,7 +54,7 @@ mariadb:
 
   username: "user"
   password: "password"
-  database: "mavizcare"
+  database: "petcare"
 
   envConfigMap: true
 

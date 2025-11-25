@@ -1,7 +1,5 @@
-package com.github.rezakaramad.mavizcare;
+package com.github.rezakaramad.petcare;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
@@ -9,9 +7,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import com.github.rezakaramad.mavizcare.controller.FoodController;
-import com.github.rezakaramad.mavizcare.entity.Food;
-import com.github.rezakaramad.mavizcare.repository.FoodRepository;
+import com.github.rezakaramad.petcare.controller.FoodController;
+import com.github.rezakaramad.petcare.entity.Food;
+import com.github.rezakaramad.petcare.repository.FoodRepository;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -19,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.server.ResponseStatusException;
 
 @WebMvcTest(
     controllers = FoodController.class,

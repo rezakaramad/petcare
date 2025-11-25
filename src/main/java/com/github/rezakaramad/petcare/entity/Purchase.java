@@ -1,4 +1,4 @@
-package com.github.rezakaramad.mavizcare.entity;
+package com.github.rezakaramad.petcare.entity;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import jakarta.persistence.Column;

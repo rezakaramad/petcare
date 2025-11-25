@@ -1,4 +1,4 @@
-package com.github.rezakaramad.mavizcare.dto;
+package com.github.rezakaramad.petcare.dto;
 
 /**
  * DTO for creating or updating a Food.

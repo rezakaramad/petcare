@@ -1,4 +1,4 @@
-package com.github.rezakaramad.mavizcare.controller;
+package com.github.rezakaramad.petcare.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @see org.springframework.ui.Model
  */
 @Controller
-public class MavizCareController {
+public class PetCareController {
 
   /**
    * Handles requests to the home page ("/").

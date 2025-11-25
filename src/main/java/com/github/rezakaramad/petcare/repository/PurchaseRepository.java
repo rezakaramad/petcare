@@ -1,6 +1,6 @@
-package com.github.rezakaramad.mavizcare.repository;
+package com.github.rezakaramad.petcare.repository;
 
-import com.github.rezakaramad.mavizcare.entity.Purchase;
+import com.github.rezakaramad.petcare.entity.Purchase;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 

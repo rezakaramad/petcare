@@ -1,4 +1,4 @@
-package com.github.rezakaramad.mavizcare;
+package com.github.rezakaramad.petcare;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +9,10 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
  * application.
  */
 @SpringBootApplication
-@EntityScan("com.github.rezakaramad.mavizcare.entity")
-public class MavizCareApplication {
+@EntityScan("com.github.rezakaramad.petcare.entity")
+public class PetCareApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(MavizCareApplication.class, args);
+    SpringApplication.run(PetCareApplication.class, args);
   }
 }

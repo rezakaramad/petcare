@@ -1,32 +1,4 @@
-CREATE TABLE IF NOT EXISTS books (
-  id BIGINT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255),
-  author VARCHAR(255)
-);
-
-CREATE TABLE IF NOT EXISTS users (
-  id BIGINT AUTO_INCREMENT PRIMARY KEY,
-  created_at DATE,
-  email VARCHAR(255)
-);
-
-CREATE TABLE IF NOT EXISTS trips (
-  id BIGINT AUTO_INCREMENT PRIMARY KEY,
-  from_date DATE NOT NULL,
-  to_date DATE NOT NULL,
-  user_id BIGINT NOT NULL,
-  CONSTRAINT fk_trips_users FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
-CREATE TABLE IF NOT EXISTS trip_locations (
-  id BIGINT AUTO_INCREMENT PRIMARY KEY,
-  trip_id BIGINT NOT NULL,
-  location VARCHAR(255) NOT NULL,
-  CONSTRAINT fk_trip_locations_trip FOREIGN KEY (trip_id) REFERENCES trips(id) ON DELETE CASCADE
-);
-
-
--- Maviz Care
+-- Pet Care
 
 
 CREATE TABLE IF NOT EXISTS profiles (

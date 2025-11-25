@@ -1,4 +1,4 @@
---  Maviz Care - Mock Data
+--  Pet Care - Mock Data
 
 SET FOREIGN_KEY_CHECKS = 0;
 

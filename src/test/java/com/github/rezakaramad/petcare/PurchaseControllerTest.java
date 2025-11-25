@@ -1,4 +1,4 @@
-package com.github.rezakaramad.mavizcare;
+package com.github.rezakaramad.petcare;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -7,13 +7,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import com.github.rezakaramad.mavizcare.controller.PurchaseController;
-import com.github.rezakaramad.mavizcare.entity.Food;
-import com.github.rezakaramad.mavizcare.entity.Profile;
-import com.github.rezakaramad.mavizcare.entity.Purchase;
-import com.github.rezakaramad.mavizcare.repository.FoodRepository;
-import com.github.rezakaramad.mavizcare.repository.ProfileRepository;
-import com.github.rezakaramad.mavizcare.repository.PurchaseRepository;
+import com.github.rezakaramad.petcare.controller.PurchaseController;
+import com.github.rezakaramad.petcare.entity.Food;
+import com.github.rezakaramad.petcare.entity.Profile;
+import com.github.rezakaramad.petcare.entity.Purchase;
+import com.github.rezakaramad.petcare.repository.FoodRepository;
+import com.github.rezakaramad.petcare.repository.ProfileRepository;
+import com.github.rezakaramad.petcare.repository.PurchaseRepository;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;

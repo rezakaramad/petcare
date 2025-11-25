@@ -1,10 +1,10 @@
-package com.github.rezakaramad.mavizcare.controller;
+package com.github.rezakaramad.petcare.controller;
 
-import com.github.rezakaramad.mavizcare.dto.PurchaseDTO;
-import com.github.rezakaramad.mavizcare.entity.Purchase;
-import com.github.rezakaramad.mavizcare.repository.FoodRepository;
-import com.github.rezakaramad.mavizcare.repository.ProfileRepository;
-import com.github.rezakaramad.mavizcare.repository.PurchaseRepository;
+import com.github.rezakaramad.petcare.dto.PurchaseDTO;
+import com.github.rezakaramad.petcare.entity.Purchase;
+import com.github.rezakaramad.petcare.repository.FoodRepository;
+import com.github.rezakaramad.petcare.repository.ProfileRepository;
+import com.github.rezakaramad.petcare.repository.PurchaseRepository;
 import java.util.Objects;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

@@ -1,6 +1,6 @@
-package com.github.rezakaramad.mavizcare.repository;
+package com.github.rezakaramad.petcare.repository;
 
-import com.github.rezakaramad.mavizcare.entity.Food;
+import com.github.rezakaramad.petcare.entity.Food;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

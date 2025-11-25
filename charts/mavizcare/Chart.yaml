@@ -1,6 +1,6 @@
 apiVersion: v2
-name: mavizcare
-description: A Helm chart for deploying the MavizCare Spring Boot application and its MariaDB database.
+name: petcare
+description: A Helm chart for deploying the PetCare Spring Boot application and its MariaDB database.
 type: application
 version: 0.0.1
 appVersion: "70935cd9d80b0f354092c80ac85a3b06adeec6fd"

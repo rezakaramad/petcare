@@ -24,7 +24,7 @@ tasks.named("jar") {
 
 bootJar {
     enabled = true
-    archiveBaseName = "mavizcare"
+    archiveBaseName = "petcare"
     archiveVersion  = project.version
 }
 

@@ -1,4 +1,4 @@
-package com.github.rezakaramad.mavizcare.dto;
+package com.github.rezakaramad.petcare.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

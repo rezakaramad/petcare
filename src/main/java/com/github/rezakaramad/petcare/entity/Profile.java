@@ -1,4 +1,4 @@
-package com.github.rezakaramad.mavizcare.entity;
+package com.github.rezakaramad.petcare.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

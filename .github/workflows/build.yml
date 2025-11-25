@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/mavizcare
+  IMAGE_NAME: ${{ github.repository_owner }}/petcare
 
 concurrency:
   group: build-${{ github.ref }}
@@ -44,7 +44,7 @@ jobs:
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
-          name: mavizcare-jar
+          name: petcare-jar
           path: build/libs/*.jar
 
   docker:
@@ -66,7 +66,7 @@ jobs:
       - name: Download JAR artifact
         uses: actions/download-artifact@v4
         with:
-          name: mavizcare-jar
+          name: petcare-jar
           path: jar
 
       - name: Log in to GHCR
@@ -82,9 +82,9 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/mavizcare:${{ github.sha }}
-            ghcr.io/${{ github.repository_owner }}/mavizcare:latest
+            ghcr.io/${{ github.repository_owner }}/petcare:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/petcare:latest
           build-args: |
-            JAR_FILE=jar/mavizcare-${{ github.sha }}.jar
+            JAR_FILE=jar/petcare-${{ github.sha }}.jar
           cache-from: type=gha
           cache-to: type=gha,mode=max
