@@ -1,0 +1,98 @@
+# --------------------------------------------------------
+# Chart Config
+# --------------------------------------------------------
+
+nameOverride: ""
+fullnameOverride: ""
+
+# --------------------------------------------------------
+# APP (Spring Boot Application)
+# --------------------------------------------------------
+
+replicas: 1
+
+image:
+  repository: "ghcr.io/rezakaramad/petcare"
+  tag: "37a5ad17d1534cc6ce9427787a7071756a69bb4e"
+  pullPolicy: IfNotPresent
+
+containerPort: 8080
+
+service:
+  type: ClusterIP
+  port: 8080
+
+logging:
+  root: INFO
+
+envConfigMap: true
+
+volumes: []
+volumeMounts: []
+
+resources: {}
+
+nodeSelector: {}
+affinity: {}
+tolerations: []
+
+appConfig: ""
+
+# --------------------------------------------------------
+# DATABASE (MariaDB)
+# --------------------------------------------------------
+
+mariadb:
+  image:
+    repository: "mariadb"
+    tag: "11.5.2"
+    pullPolicy: IfNotPresent
+
+  replicas: 1
+
+  port: 3306
+
+  rootPassword: "password"
+  username: "user"
+  password: "password"
+  database: "petcare"
+
+  envConfigMap: true
+
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClass: ""
+    accessModes:
+      - ReadWriteOnce
+
+    hostPathEnabled: false
+    hostPath: "/data/mariadb"
+
+  probes:
+    liveness:
+      enabled: true
+      exec:
+        command: ["mariadb-admin", "ping", "-h", "127.0.0.1"]
+      initialDelaySeconds: 30
+      timeoutSeconds: 5
+      periodSeconds: 10
+      failureThreshold: 6
+
+    readiness:
+      enabled: true
+      exec:
+        command: ["mariadb-admin", "ping", "-h", "127.0.0.1"]
+      initialDelaySeconds: 10
+      timeoutSeconds: 3
+      periodSeconds: 5
+      failureThreshold: 3
+
+    startup:
+      enabled: false
+      exec:
+        command: ["mariadb-admin", "ping", "-h", "127.0.0.1"]
+      initialDelaySeconds: 60
+      timeoutSeconds: 5
+      periodSeconds: 10
+      failureThreshold: 30
