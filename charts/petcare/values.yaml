@@ -13,7 +13,7 @@ replicas: 1
 
 image:
   repository: "ghcr.io/rezakaramad/petcare"
-  tag: "37a5ad17d1534cc6ce9427787a7071756a69bb4e"
+  tag: "e3fd9249cb91851c004e213a75e2509550ad09ee"
   pullPolicy: IfNotPresent
 
 containerPort: 8080
