@@ -11,7 +11,7 @@ permissions:
 env:
   REGISTRY: ghcr.io
   APP: petcare
-  VERSION: pr-${{ github.event.pull_request.number }}-${{ github.sha }}
+  VERSION: pr-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}
 
 concurrency:
   group: checks-${{ github.ref }}
