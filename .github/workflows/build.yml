@@ -5,9 +5,14 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/petcare
+  APP: petcare
+  VERSION: ${{ github.sha }}
 
 concurrency:
   group: build-${{ github.ref }}
@@ -15,13 +20,11 @@ concurrency:
 
 jobs:
   gradle:
-    name: Build Spring Boot JAR
+    name: 🏗 Build Spring Boot JAR
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up JDK
@@ -38,25 +41,19 @@ jobs:
             ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 
-      - name: Build JAR
-        run: ./gradlew -Pversion=${GITHUB_SHA} bootJar --no-daemon
-
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
-          name: petcare-jar
-          path: build/libs/*.jar
+          name: ${{ env.APP }}-${{ env.VERSION }}
+          path: build/libs/${{ env.APP }}-${{ env.VERSION }}.jar
 
   docker:
-    name: Build & Push Docker Image
+    name: 🐳 Build & Push Docker Image
     needs: gradle
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - uses: docker/setup-buildx-action@v3
@@ -66,7 +63,7 @@ jobs:
       - name: Download JAR artifact
         uses: actions/download-artifact@v4
         with:
-          name: petcare-jar
+          name: ${{ env.APP }}-${{ env.VERSION }}
           path: jar
 
       - name: Log in to GHCR
@@ -82,9 +79,9 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/petcare:${{ github.sha }}
-            ghcr.io/${{ github.repository_owner }}/petcare:latest
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.APP }}:${{ env.VERSION }}
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.APP }}:latest
           build-args: |
-            JAR_FILE=jar/petcare-${{ github.sha }}.jar
+            JAR_FILE=jar/${{ env.APP }}-${{ env.VERSION }}.jar
           cache-from: type=gha
           cache-to: type=gha,mode=max

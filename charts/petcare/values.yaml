@@ -9,7 +9,7 @@ fullnameOverride: ""
 # APP (Spring Boot Application)
 # --------------------------------------------------------
 
-replicas: 1
+replicas: 2
 
 image:
   repository: "ghcr.io/rezakaramad/petcare"
