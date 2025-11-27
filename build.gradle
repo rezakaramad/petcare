@@ -9,7 +9,7 @@ plugins {
 
 group = "com.github.rezakaramad"
 version = findProperty("version") ?: "0.1.0-SNAPSHOT"
-app = findProperty("app") ?: "petcare"
+def appName = findProperty("app") ?: project.name
 
 java {
 	toolchain {
@@ -23,7 +23,7 @@ tasks.named("jar") {
 
 tasks.named("bootJar") {
     enabled = true
-    archiveBaseName = project.app
+    archiveBaseName = appName
     archiveVersion  = project.version
 }
 
