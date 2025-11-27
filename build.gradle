@@ -8,9 +8,8 @@ plugins {
 }
 
 group = "com.github.rezakaramad"
-name = "petcare"
 version = findProperty("version") ?: "0.1.0-SNAPSHOT"
-app = findProperty("app") ?: project.name
+app = findProperty("app") ?: "petcare"
 
 java {
 	toolchain {
